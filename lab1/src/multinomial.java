@@ -578,6 +578,10 @@ public class multinomial {
 		//System.out.println("The simplify result is: "+complete);
 	}
 	
+	public void addresure(){
+		
+	}
+	
 
 }
 
