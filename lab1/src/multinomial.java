@@ -12,7 +12,7 @@ public class multinomial {
 		StringBuilder complete=new StringBuilder();
 
 		
-		InputStream is=null;
+		InputStream is = null;
 		StringBuilder sb=null;
 
 		int ch,flag;
@@ -46,7 +46,8 @@ public class multinomial {
 							continue;
 						}
 						long endTime=System.nanoTime(); //获取结束时间  
-						System.out.println("化简程序运行时间： "+(endTime-startTime)+"ns");   
+						System.out.println("化简程序运行时间： "
+								+(endTime-startTime)+"ns");   
 					}else if(str.startsWith("!d/d")){        //d/d*
 						cmd2=str.substring(4,str.length()-1);						
 						
@@ -91,12 +92,12 @@ public class multinomial {
 								System.out.println("Invalid Multinomial");
 								flag++;
 								break;
-							}else if(Character.isDigit(c)||((prec=='\0'||prec=='*'||prec=='+'||prec=='-'||Character.isLetter(prec)) && Character.isLetter(c))||(c=='\r'||c=='\n')
-									||((Character.isLetter(prec) || Character.isDigit(prec)) && (c=='*'||c=='-'||c=='+'||c=='\r'))){
+							}else if(Character.isDigit(c)||((prec=='\0'||prec=='*'||prec=='+'||prec=='-'||Character.isLetter(prec)) && Character.isLetter(c))
+									||((Character.isLetter(prec) || Character.isDigit(prec)) && (c=='*'||c=='-'||c=='+'||c=='\r'))||(c=='\r'||c=='\n')){
 								;
 							}
 							else if(prec =='+' && c =='-'){
-								;
+								
 							}
 							else{
 								System.out.println("Invalid Multinomial");		
