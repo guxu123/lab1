@@ -1,4 +1,4 @@
-import java.awt.List;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,17 +10,17 @@ public class multinomial {
 	
 	public static void main(String[] args){
 		StringBuilder complete=new StringBuilder();
-		multinomial mul=new multinomial();
+
 		
-		InputStream is=null;
+		InputStream is = null;
 		StringBuilder sb=null;
-		StringBuilder mntmp = null,mymn=null;
-		int ch,flag,res,finalres;
+
+		int ch,flag;
 		char c='\0',prec='\0';
-		String str,mn="\0",mnstr,cmd1,cmd2;
-		String []list,tmp;
-		String []partList,finalList;
-		StringBuilder strtmp=null,result=null,finalresult;
+		String str,mn="\0",cmd2;
+
+
+
 		try{
 			is=System.in;
 			sb=new StringBuilder();
@@ -46,7 +46,8 @@ public class multinomial {
 							continue;
 						}
 						long endTime=System.nanoTime(); //获取结束时间  
-						System.out.println("化简程序运行时间： "+(endTime-startTime)+"ns");   
+						System.out.println("化简程序运行时间： "
+								+(endTime-startTime)+"ns");   
 					}else if(str.startsWith("!d/d")){        //d/d*
 						cmd2=str.substring(4,str.length()-1);						
 						
@@ -91,12 +92,12 @@ public class multinomial {
 								System.out.println("Invalid Multinomial");
 								flag++;
 								break;
-							}else if(Character.isDigit(c)||((prec=='\0'||prec=='*'||prec=='+'||prec=='-'||Character.isLetter(prec)) && Character.isLetter(c))||(c=='\r'||c=='\n')
-									||((Character.isLetter(prec) || Character.isDigit(prec)) && (c=='*'||c=='-'||c=='+'||c=='\r'))){
+							}else if(Character.isDigit(c)||((prec=='\0'||prec=='*'||prec=='+'||prec=='-'||Character.isLetter(prec)) && Character.isLetter(c))
+									||((Character.isLetter(prec) || Character.isDigit(prec)) && (c=='*'||c=='-'||c=='+'||c=='\r'))||(c=='\r'||c=='\n')){
 								;
 							}
 							else if(prec =='+' && c =='-'){
-								;
+								
 							}
 							else{
 								System.out.println("Invalid Multinomial");		
@@ -202,8 +203,8 @@ public class multinomial {
 		int flag,res,finalres;
 		int flag2 = 0;
 		StringBuilder mntmp,strtmp,result,finalresult;
-		multinomial mul;    //simplify
-						mul=new multinomial();
+		    //simplify
+						
 						if(mn=="\0"){
 							System.out.println("Please input the multinomial first!");
 							flag2++;
@@ -212,7 +213,7 @@ public class multinomial {
 						//fix here
 						
 						if(str.equals("!simplify\r")|| str.equals("!simplify \r")){
-							mul.merge(mn,complete);
+							merge(mn,complete);
 							System.out.print("The simplify result is: "+ complete);
 							complete.delete(0, complete.length());
 							
@@ -298,7 +299,7 @@ public class multinomial {
 						if(finalres!=0)
 							finalresult.append(finalres+"+");
 						finalresult.delete(finalresult.length()-1,finalresult.length());
-						mul.merge(finalresult.toString(),complete);
+						merge(finalresult.toString(),complete);
 						System.out.println("The simplify result is: "+complete);
 						complete.delete(0, complete.length());
 		
@@ -318,7 +319,7 @@ public class multinomial {
 		String mn2 = "";
 		char[] mn3;
 		
-		char c='\0';
+
 		for(int i = 0;i<mn.length();i++){
 			if (mn.charAt(i) ==' '){
 				continue;
@@ -480,8 +481,8 @@ public class multinomial {
 	public static String dao(String str,String str2){
 		int s = countStr(str,str2);
 		String str1 = "";
-		int s1 =0;
-		char[] chars= str.toCharArray();
+
+
 		String regex="[0-9]+?";
 		Pattern p=Pattern.compile(regex);
 		Matcher m=p.matcher(str);
@@ -536,7 +537,7 @@ public class multinomial {
 		String[] partList,tmp,finalList;
 		int res,finalres;
 		StringBuilder mntmp,strtmp,result,finalresult;
-		multinomial mul;
+		
 		mntmp=new StringBuilder();
 		mnstr=mn;
 		
@@ -573,13 +574,9 @@ public class multinomial {
 		if(finalres!=0)
 			finalresult.append(finalres+"+");
 		finalresult.delete(finalresult.length()-1,finalresult.length());
-		mul=new multinomial();
-		mul.merge(finalresult.toString(),complete);
-		//System.out.println("The simplify result is: "+complete);
-	}
-	
-	public void addresure(){
 		
+		merge(finalresult.toString(),complete);
+		//System.out.println("The simplify result is: "+complete);
 	}
 	
 
