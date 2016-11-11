@@ -80,35 +80,7 @@ public class multinomial {
 							continue;
 						}			
 					}else{
-						String mn1=str.substring(0,str.length()-1);
-						mn = general1(general(mn1));
-						cal(mn,complete);
-						mn = complete.toString();
-						complete.delete(0, complete.length());
-						flag=0;
-						for(int i=0;i<mn.length();i++){
-							c=mn.charAt(i);
-							if(!Character.isDigit(c) && !Character.isLetter(c) && (c!='*' && c !='+'&&c!='\r'&&c!='\n' &&c!='-')){
-								System.out.println("Invalid Multinomial");
-								flag++;
-								break;
-							}else if(Character.isDigit(c)||((prec=='\0'||prec=='*'||prec=='+'||prec=='-'||Character.isLetter(prec)) && Character.isLetter(c))
-									||((Character.isLetter(prec) || Character.isDigit(prec)) && (c=='*'||c=='-'||c=='+'||c=='\r'))||(c=='\r'||c=='\n')){
-								;
-							}
-							else if(prec =='+' && c =='-'){
-								
-							}
-							else{
-								System.out.println("Invalid Multinomial");		
-								flag++;
-								break;
-							}
-							prec=c;
-						}
-						if(0==flag){
-							System.out.println("Valid Multinomial!\nyour mm is: "+mn);						
-						}
+						expression(str);
 					}
 					
 				}
@@ -132,6 +104,42 @@ public class multinomial {
 	
 	///HERE
 	
+	public static String expression(String mn){
+		StringBuilder complete = new StringBuilder();
+		int flag;
+		char c='\0',prec='\0';
+		String mn1=mn;
+		mn = general1(general(mn1));
+		flag=0;
+		for(int i=0;i<mn.length();i++){
+			c=mn.charAt(i);
+			if(!Character.isDigit(c) && !Character.isLetter(c) && (c!='*' && c !='+'&&c!='\r'&&c!='\n' &&c!='-')){
+				System.out.println("Invalid Multinomial");
+				flag++;
+				return null;
+			}else if(Character.isDigit(c)||((prec=='\0'||prec=='*'||prec=='+'||prec=='-'||Character.isLetter(prec)) && Character.isLetter(c))
+					||((Character.isLetter(prec) || Character.isDigit(prec)) && (c=='*'||c=='-'||c=='+'||c=='\r'))||(c=='\r'||c=='\n')){
+				;
+			}
+			else if(prec =='+' && c =='-'){
+				
+			}
+			else{
+				System.out.println("Invalid Multinomial");		
+				flag++;
+				return null;
+			}
+			prec=c;
+			
+		}
+		if(0==flag){
+			System.out.println("Valid Multinomial!\nyour mm is: "+mn);						
+		}
+		//cal(mn,complete);
+		return mn;
+	}
+		
+
 	
 	
 	
@@ -578,7 +586,6 @@ public class multinomial {
 		merge(finalresult.toString(),complete);
 		//System.out.println("The simplify result is: "+complete);
 	}
-	
 
 }
 
